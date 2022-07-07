@@ -1,0 +1,7 @@
+<div *ngFor="let carImage of carImages" class="card" style="width: 18rem;">
+    <img [src]="getImageSource(carImage)" class="card-img-top" >
+    <div class="card-body">
+      <h5 class="card-title">{{carImage.carId}}</h5>
+      <p class="card-text">https://localhost:44396/{{carImage.imagePath}}</p>
+    </div>
+  </div> 
