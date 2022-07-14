@@ -7,5 +7,6 @@ export interface CarDto{
     colorId:number;
     modelYear:number;     
     dailyPrice:number;
-    description:string;    
+    description:string;  
+    images:string[];  
 }

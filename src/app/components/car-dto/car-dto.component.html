@@ -1,85 +1,61 @@
-<div class="container">
-    <div class="row">
-      <div>
+<div class="text-center container py-5" style="background-color: #eee">
+  <h4 class="mt-4 mb-5"><strong>KİRALIK ARAÇLAR</strong></h4>
+
+  <div class="row">
+    <div
+      *ngFor="let carDetail of cars"
+      class="col-lg-4 col-md-12 mb-4 text-reset"
+      [class]="getCurrentCarClass(carDetail)"
+      (click)="setCurrentCar(carDetail)"
+    >
+      <div class="card">
         <div
-          *ngIf="dataLoaded == false"
-          class="spinner-border text-warning"
-          role="status"
+          class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+          data-mdb-ripple-color="light"
         >
-          <span class="visually-hidden">Loading...</span>
+          <img
+            *ngIf="carDetail.images[0] == null"
+            class="img-rounded w-100"
+            style="height: 200px"
+            src="{{ imagePath }}Images/Default.jpg"
+          />
+          <img
+            *ngIf="carDetail.images[0] != null"
+            class="img-rounded w-100"
+            style="height: 200px"
+            src="{{ imagePath }}{{ carDetail.images[0] }}"
+          />
+          <div class="mask">
+            <div class="d-flex justify-content-start align-items-end h-100">
+              <h5><span class="badge bg-success ms-2">Eco</span></h5>
+            </div>
+          </div>
+          <div class="hover-overlay">
+            <div
+              class="mask"
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </div>
         </div>
-  
-       
-        <div class="row g-2">
-          <!-- <div class="col-4">
-            <div class="form-floating">
-              <input type="text"[(ngModel)]="filterText" class="form-control" id="filterText" placeholder="aramak istediğiniz ifadeyi giriniz">            <label for="floatingInputGrid">Araç</label>
-            </div>
-          </div> -->
-          <div class="col-1">
-            <button type="submit" class="btn btn-danger">Ara</button>
-          </div>
-          <!-- <div class="col-3">
-            <div class="form-floating">
-              <select class="form-select" [(ngModel)]="filterText1" id="floatingSelectGrid" aria-label="Floating label select example">
-                <option selected>Marka Seçiniz</option>
-                <option  *ngFor="let brand of brands" [value]="brand.brandId">{{brand.brandName}}</option>
-              </select>
-              <label for="floatingSelectGrid">Markalar</label>
-            </div>
-          </div> -->
-          <!-- <div class="col-3">
-            <div class="form-floating">
-              <select class="form-select" [(ngModel)]="filterText2" id="floatingSelectGrid" aria-label="Floating label select example">
-                <option selected>Renk Seçiniz</option>
-                <option *ngFor="let color of colors" [value]="color.colorId">{{color.colorName}}</option>
-              </select>
-              <label for="floatingSelectGrid">Renkler</label>
-            </div>
-          </div>
-           -->
-          <!-- <div class="col-1">
-            <button routerLink="/cars/filter/{{filterText1}}/{{filterText2}}" class="btn btn-danger">Filtrele</button>
-          </div> -->
+        <div class="card-body">
+          <h5 class="mb-3">
+            {{ carDetail.description }}
+          </h5>
+          <a routerLink="/cars/brand/{{ carDetail.brandId }}" class="text-reset">
+            <p>Markanın diğer arabalarını gör</p>
+          </a>
+          <h6 class="mb-3">{{ carDetail.dailyPrice }} TL</h6>
+          <button
+          routerLink="/cars/cardetail/{{ carDetail.carId }}"
+          [class]="getCurrentCarClass(carDetail)"
+            (click)="setCurrentCar(carDetail)"
+            class="btn btn-outline-dark"
+            type="button"
+          >
+            Incele
+          </button>
         </div>
-        <table class="table table-striped table-active">
-          <thead class="thead-light">
-            <tr>
-              <th>Araç Numarası</th>
-              <th>Marka</th>
-              <th>Renk</th>
-              <th>Model</th>
-              <th>Günlük Kirası</th>
-              <th>Açıklama</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let car of cars" >
-              <td>{{ car.carId }}</td>
-              <td>{{ car.brandName }}</td>
-              <td>{{ car.colorName }}</td>
-              <td>{{ car.modelYear }}</td>
-              <td>{{ car.dailyPrice }}</td>
-              <td>{{ car.description }}</td>
-              <!-- <td><span routerLink = "/cars/update/{{car.carId}}"class="badge bg-success">Güncelle</span></td> -->
-              <!-- <td><span class="badge bg-danger" (click)=delete(car.carId)>Sil</span></td> -->
-            </tr>
-          </tbody>
-          <div style="position: relative; margin-right: 200">
-            <button
-              routerLink="/cars/cardetails"
-              type="button"
-              class="btn btn-secondary"
-              style="text-align: center"
-            >
-              Araçları Detaylı Görmek İçin Tıklayınız
-            </button>
-            <!-- <button type="button" class="btn btn-warning" routerLink="/cars/addcar">Araç Ekle</button> -->
-  
-          </div>
-        </table>
       </div>
     </div>
   </div>
+</div>
