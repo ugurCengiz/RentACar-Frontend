@@ -1,11 +1,26 @@
-<ul class="list-group">
-    <h5>Markalar</h5> 
-    <li [class]="getAllCategoryClass()" routerLink="/cars">Tüm Ürünler</li>   
+<h2>RENT A CAR </h2>
+<h2>ARAÇ KİRALAMA</h2>
+
+<ul class="list-group">    
+    <li [class]="getAllBrandClass()" routerLink="/cars">Tüm Ürünler</li> 
+    <div class="mb-3">
+      <h5 >MARKALAR</h5>
+      <input type="text" [(ngModel)]="filterText" class="filterText" class="form-control" id="filterText" placeholder="Marka arayınız">
+    </div>
+    <div *ngIf="filterText.length>2" class="alert alert-success">
+      {{filterText}} aradınız
+    </div>  
     <li (click)="setCurrentBrand(brand)"      
     routerLink="/cars/brand/{{brand.brandId}}"
-    *ngFor="let brand of brands"
+    *ngFor="let brand of brands |brandFilter:filterText"
     [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
    
 </ul>
 
-<h5 *ngIf="currentBrand">{{currentBrand.brandName }} seçtiniz</h5>
+<form [formGroup]="brandForm" (ngSubmit)="submit()">
+  <select formControlName="brand" class="form-select" aria-label="Default select example">
+    <option [ngValue]="null">Select Brand</option>
+    <option *ngFor="let brand of brands" [ngValue]="brand.brandId">{{brand.brandName}}</option>
+  </select>
+  <button type="submit">ARAMA</button>
+</form>

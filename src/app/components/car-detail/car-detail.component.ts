@@ -19,6 +19,7 @@ export class CarDetailComponent implements OnInit {
   carImages: CarImage[] = [];
   imagePath: string = 'https://localhost:44396/';
   dataLoaded = false;
+  filterText=""
   constructor(
     private carImageService: CarImageService,
     private carDetailService: CarDtoService,

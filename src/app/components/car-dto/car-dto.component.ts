@@ -22,6 +22,7 @@ export class CarDtoComponent implements OnInit {
   imagePath: string = 'https://localhost:44396/';
   dataLoaded = false;
   currentCar: CarDto | undefined;
+  filterText="";
 
   constructor(
     private carService: CarDtoService,

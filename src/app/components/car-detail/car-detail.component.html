@@ -2,15 +2,13 @@
   <div class="header">
     <div class="row r1">
       <div class="col-md-9 p-4" *ngFor="let currentCar of currentCars">
-        <h1>{{ currentCar.description }}</h1>
+        <h1>{{ currentCar.brandName }}-{{ currentCar.carName }}</h1>
       </div>
       <div class="col-md-3 text-right pqr">
         <i class="fa fa-star"></i><i class="fa fa-star"></i
         ><i class="fa fa-star"></i><i class="fa fa-star"></i
         ><i class="fa fa-star"></i>
-      </div>
-      <p class="text-right para">Puan</p>
-    </div>
+      
   </div>
   <div class="container-body mt-4">
     <div class="row r3">
@@ -20,6 +18,7 @@
           <li><strong>RENK: </strong>{{ currentCar.colorName }}</li>
           <li><strong>MODEL: </strong>{{ currentCar.modelYear }}</li>
           <li><strong>GÜNLÜK FİYAT: </strong>{{ currentCar.dailyPrice }} TL</li>
+          <li><strong>DETAY: </strong>{{ currentCar.description }} </li>
         </ul>
       </div>
       <div
@@ -67,8 +66,8 @@
 </div>
 <div class="footer d-flex flex-column mt-5">
   <div class="row r4">
-    <div class="col-md-2 myt des"><a href="#">Description</a></div>
-    <div class="col-md-2 myt"><a href="#">Review</a></div>
+    <div class="col-md-2 myt des"></div>
+    <div class="col-md-2 myt"></div>
     <div class="col-md-2 mio offset-md-4"><a href="#">ADD TO CART</a></div>
     <div class="col-md-2 myt">
       <button type="button" class="btn btn-outline-success">

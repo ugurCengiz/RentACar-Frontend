@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -11,11 +12,18 @@ export class ColorComponent implements OnInit {
   colors:Color[]=[];
   currentColor:Color;
   dataLoaded=false;
+  filterText="";
+  colorForm:FormGroup;
+  isAllColorsClicked:boolean = true;
+  color:Color
 
-  constructor(private colorService:ColorService) { }
+  constructor(private formBuilder:FormBuilder,private colorService:ColorService) { }
 
   ngOnInit(): void {
-    this.getColors()
+    this.colorForm  = this.formBuilder.group({
+      color:[null]
+    });
+    this.getColors();
   }
   getColors(){
     this.colorService.getColors().subscribe(response=>{
@@ -37,7 +45,15 @@ export class ColorComponent implements OnInit {
     }
   }
 
-  
+  makeAllColorsActive(){
+    this.isAllColorsClicked = true;
+    console.log("all cars clicked.");
+    
+  }
+  submit() {
+    console.log("Form Submitted")
+    console.log(this.colorForm.value)
+  }
 
 
 

@@ -1,9 +1,16 @@
+<div class="mb-3">
+  <h5 for="filterText" class="form-label">SEARCH</h5>
+  <input type="text" [(ngModel)]="filterText" class="filterText" class="form-control" id="filterText" placeholder="arama ifadesini giriniz">
+</div>
+<div *ngIf="filterText.length>2" class="alert alert-success">
+  {{filterText}} aradınız
+</div>
 <div class="text-center container py-5" style="background-color: #eee">
   <h4 class="mt-4 mb-5"><strong>KİRALIK ARAÇLAR</strong></h4>
 
   <div class="row">
     <div
-      *ngFor="let carDetail of cars"
+      *ngFor="let carDetail of cars |carFilter:filterText "
       class="col-lg-4 col-md-12 mb-4 text-reset"
       [class]="getCurrentCarClass(carDetail)"
       (click)="setCurrentCar(carDetail)"
@@ -16,19 +23,17 @@
           <img
             *ngIf="carDetail.images[0] == null"
             class="img-rounded w-100"
-            style="height: 200px"
+            style="height: 200px; width: 100px;"
             src="{{ imagePath }}Images/Default.jpg"
           />
           <img
             *ngIf="carDetail.images[0] != null"
             class="img-rounded w-100"
-            style="height: 200px"
+            style="height: 200px; width: 100px;"
             src="{{ imagePath }}{{ carDetail.images[0] }}"
           />
           <div class="mask">
-            <div class="d-flex justify-content-start align-items-end h-100">
-              <h5><span class="badge bg-success ms-2">Eco</span></h5>
-            </div>
+            
           </div>
           <div class="hover-overlay">
             <div
@@ -39,7 +44,8 @@
         </div>
         <div class="card-body">
           <h5 class="mb-3">
-            {{ carDetail.description }}
+            {{ carDetail.brandName }} - {{ carDetail.carName }} <br>
+            {{ carDetail.colorName }}
           </h5>
           <a routerLink="/cars/brand/{{ carDetail.brandId }}" class="text-reset">
             <p>Markanın diğer arabalarını gör</p>

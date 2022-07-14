@@ -1,8 +1,23 @@
+<div class="mb-3">
+  <h5 >RENKLER</h5>
+  <input type="text" [(ngModel)]="filterText" class="filterText" class="form-control" id="filterText" placeholder="Renk Arayınız">
+</div>
+<div *ngIf="filterText.length>2" class="alert alert-success">
+  {{filterText}} aradınız
+</div>
 <ul class="list-group">  
-    <h5>Renkler</h5> 
+    
     <li (click)="setCurrentColor(color)"
     routerLink="/cars/color/{{color.colorId}}"
-    *ngFor="let color of colors"
-    [class]="getCurrentColorClass(color)">{{color.colorName}}</li>     
+    *ngFor="let color of colors |colorFilter:filterText"
+    [class]="getCurrentColorClass(color)">{{color.colorName}}</li>   
    
 </ul>
+
+<form [formGroup]="colorForm" (ngSubmit)="submit()">
+  <select formControlName="color" class="form-select" aria-label="Default select example">
+    <option [ngValue]="null">Select Color</option>
+    <option *ngFor="let color of colors" [ngValue]="color.colorId">{{color.colorName}}</option>
+  </select>
+  <button type="submit">ARAMA</button>
+</form>
