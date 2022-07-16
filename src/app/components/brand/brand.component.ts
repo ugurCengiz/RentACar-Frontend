@@ -14,8 +14,7 @@ export class BrandComponent implements OnInit {
   dataLoaded=false;
   filterText="";
   brandForm:FormGroup;
-  isAllCarsClicked:boolean = true;
-  brand:Brand
+  
   
   constructor(
     private formBuilder:FormBuilder,
@@ -38,7 +37,7 @@ export class BrandComponent implements OnInit {
   }
 
   getCurrentBrandClass(brand:Brand){
-    if(brand == this.currentBrand && !this.isAllCarsClicked){
+    if(brand == this.currentBrand){
       return "list-group-item active";
     } else{
       return "list-group-item";
@@ -53,15 +52,5 @@ export class BrandComponent implements OnInit {
       return "list-group-item"
     }
   }
-  makeAllCarsActive(){
-    this.isAllCarsClicked = true;
-    console.log("all cars clicked.");
-    
-  }
-
-  submit(){
-    console.log("Form Submitted")
-    console.log(this.brandForm.value)
-  }
-
+ 
 }

@@ -9,18 +9,13 @@
     </div>
     <div *ngIf="filterText.length>2" class="alert alert-success">
       {{filterText}} aradınız
-    </div>  
+    </div>
+      
     <li (click)="setCurrentBrand(brand)"      
     routerLink="/cars/brand/{{brand.brandId}}"
     *ngFor="let brand of brands |brandFilter:filterText"
     [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
    
-</ul>
+</ul> 
 
-<form [formGroup]="brandForm" (ngSubmit)="submit()">
-  <select formControlName="brand" class="form-select" aria-label="Default select example">
-    <option [ngValue]="null">Select Brand</option>
-    <option *ngFor="let brand of brands" [ngValue]="brand.brandId">{{brand.brandName}}</option>
-  </select>
-  <button type="submit">ARAMA</button>
-</form>
+

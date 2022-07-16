@@ -1,10 +1,11 @@
-<div class="mb-3">
+<div  class="mb-3">
   <h5 for="filterText" class="form-label">SEARCH</h5>
   <input type="text" [(ngModel)]="filterText" class="filterText" class="form-control" id="filterText" placeholder="arama ifadesini giriniz">
 </div>
 <div *ngIf="filterText.length>2" class="alert alert-success">
   {{filterText}} aradınız
 </div>
+<app-filter-car></app-filter-car>
 <div class="text-center container py-5" style="background-color: #eee">
   <h4 class="mt-4 mb-5"><strong>KİRALIK ARAÇLAR</strong></h4>
 
@@ -33,7 +34,9 @@
             src="{{ imagePath }}{{ carDetail.images[0] }}"
           />
           <div class="mask">
-            
+            <div class="d-flex justify-content-start align-items-end h-100">
+              <h5><span class="badge bg-success ms-2">{{carDetail.brandName |uppercase}}</span></h5>
+            </div>
           </div>
           <div class="hover-overlay">
             <div
@@ -44,7 +47,7 @@
         </div>
         <div class="card-body">
           <h5 class="mb-3">
-            {{ carDetail.brandName }} - {{ carDetail.carName }} <br>
+            {{ carDetail.carName }} <br>
             {{ carDetail.colorName }}
           </h5>
           <a routerLink="/cars/brand/{{ carDetail.brandId }}" class="text-reset">

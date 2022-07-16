@@ -14,9 +14,7 @@ export class ColorComponent implements OnInit {
   dataLoaded=false;
   filterText="";
   colorForm:FormGroup;
-  isAllColorsClicked:boolean = true;
-  color:Color
-
+ 
   constructor(private formBuilder:FormBuilder,private colorService:ColorService) { }
 
   ngOnInit(): void {
@@ -44,17 +42,6 @@ export class ColorComponent implements OnInit {
 
     }
   }
-
-  makeAllColorsActive(){
-    this.isAllColorsClicked = true;
-    console.log("all cars clicked.");
-    
-  }
-  submit() {
-    console.log("Form Submitted")
-    console.log(this.colorForm.value)
-  }
-
 
 
 }

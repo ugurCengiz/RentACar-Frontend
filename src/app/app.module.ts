@@ -16,6 +16,7 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { CarFilterPipe } from './pipes/car-filter.pipe';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
+import { FilterCarComponent } from './components/filter-car/filter-car.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ColorFilterPipe } from './pipes/color-filter.pipe';
     CarDetailComponent,
     CarFilterPipe,
     BrandFilterPipe,
-    ColorFilterPipe
+    ColorFilterPipe,
+    FilterCarComponent
    
   ],
   imports: [
