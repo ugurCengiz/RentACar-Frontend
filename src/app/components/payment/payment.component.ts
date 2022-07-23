@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormBuilder,FormGroup, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 import { CarDto } from 'src/app/models/carDto';
 import { CreditCard } from 'src/app/models/creditCard';
 import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
-import { RentalDto } from 'src/app/models/rentalDto';
 import { CarDtoService } from 'src/app/services/car-dto.service';
+
 import { CreditCardService } from 'src/app/services/credit-card.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-
 import { RentalService } from 'src/app/services/rental.service';
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent implements OnInit {
-  carImageBasePath =  'https://localhost:44396/Images';
+  carImageBasePath = 'https://localhost:44396/';
   creditCardAddForm: FormGroup;
-  rental: RentalDto;
+  rental: Rental;
   creditCard: CreditCard;
   creditCards: CreditCard[] = [];
   car: CarDto;
@@ -34,17 +40,27 @@ export class PaymentComponent implements OnInit {
   rentalModel: Rental;
 
   selectedCardType: String = '';
-  cardTypes: any = ['PayPal', 'Master Card', 'Credit Card'];
-  constructor(private toastrService: ToastrService,
+  cardTypes: any = ['PayPal', 'Debit Card', 'Credit Card'];
+
+  constructor(
+    private toastrService: ToastrService,
     private carService: CarDtoService,
     private localStorageService: LocalStorageService,
     private formBuilder: FormBuilder,
     private creditCardService: CreditCardService,
     private router: Router,
-    private rentalService: RentalService) { }
+    private rentalService: RentalService
+  ) {}
 
   ngOnInit(): void {
+    console.log(this.creditCards);
+    this.rental = this.localStorageService.getRental();
+    this.getCarDetailsById(this.rental.carId);
+
+    this.createCreditCardAddForm();
+    this.getAllByCustomerId(this.rental.customerId);
   }
+
   radioChangeHandler(event: any) {
     this.selectedCardType = event.target.value;
   }
@@ -154,8 +170,9 @@ export class PaymentComponent implements OnInit {
   }
 
   getCarDetailsById(carId: number) {
-    this.carService.getCarDetailsById(carId).subscribe((response) => {
+    this.carService.getDetailById(carId).subscribe((response) => {
       this.car = response.data;
+      console.log("aaas",this.car)
       this.calculateTotalPrice();
     });
   }
@@ -175,16 +192,17 @@ export class PaymentComponent implements OnInit {
         new Date(this.rental.rentDate).getTime()) /
       (1000 * 3600 * 24);
     this.totalPrice = this.totalDay * this.car.dailyPrice;
+    console.log("price",this.car.dailyPrice)
     return this.totalPrice;
   }
 
   getCarImage() {
     if (this.car.images) {
-      return this.car.images;
+      return this.car.images[0];
     } else {
-      return 'default.jpg';
+      return 'Default.jpg';
     }
   }
-  
 
+  
 }

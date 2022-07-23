@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { BrandListComponent } from './components/brand-list/brand-list.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarDtoComponent } from './components/car-dto/car-dto.component';
 import { CarListComponent } from './components/car-list/car-list.component';
@@ -14,6 +15,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RentalAddComponent } from './components/rental-add/rental-add.component';
 import { RentalDtoComponent } from './components/rental-dto/rental-dto.component';
+import { LoginGuard } from './guards/login.guard';
 
 
 
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path:"cars/color/:colorId",component:CarDtoComponent},  
   {path:"cars/cardetail/:carId",component:CarDetailComponent},
   {path:"cars/filter/:brandId/:colorId",component:CarDtoComponent},
+  {path:"cars/add",component:CarAddComponent,canActivate:[LoginGuard]},
 
   {path:"carlist",component:CarListComponent},
   {path:"carlist/car/:carId",component:CarUpdateComponent},

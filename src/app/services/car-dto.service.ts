@@ -36,6 +36,11 @@ export class CarDtoService {
     return this.httpClient.get<SingleResponseModel<CarDto>>(newPath);
   }
 
+  getDetailById(carId: number): Observable<SingleResponseModel<CarDto>> {
+    let newPath = this.apiUrl + 'cars/getdetailcarid?id='+carId;
+    return this.httpClient.get<SingleResponseModel<CarDto>>(newPath);
+  }
+
   add(car:CarDto):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/add",car)
   }
