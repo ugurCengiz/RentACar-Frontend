@@ -9,6 +9,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class CustomerComponent implements OnInit {
 customers:Customer[]=[];
+customer :Customer
 dataLoaded=false;
   constructor(private customerService:CustomerService) { }
 
@@ -16,10 +17,21 @@ dataLoaded=false;
     this.getCustomers()
   }
 getCustomers(){
-this.customerService.getCustomers().subscribe(response=>{
+this.customerService.getCustomerDetails().subscribe(response=>{
   this.customers=response.data;
   this.dataLoaded=true
 })
+}
+getCustomerById(id:number) {
+  this.customerService.getById(id).subscribe((response) => {
+      this.customer = response.data;
+    });
+}
+
+getCustomerByUserId(id:number) {
+  this.customerService.getCustomerByUserId(id).subscribe((response) => {
+      this.customer = response.data;
+    });
 }
 
 }

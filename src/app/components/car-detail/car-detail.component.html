@@ -18,8 +18,19 @@
           <li><strong>RENK: </strong>{{ currentCar.colorName }}</li>
           <li><strong>MODEL: </strong>{{ currentCar.modelYear }}</li>
           <li><strong>GÜNLÜK FİYAT: </strong>{{ currentCar.dailyPrice }} TL</li>
-          <li><strong>DETAY: </strong>{{ currentCar.description }} </li>
+          <li><strong>DETAY: </strong>{{ currentCar.description }} </li>   
+          <br> 
+          <td>
+            <button (click)="addToCart(currentCar)" class="btn btn-primary">Sepete Ekle</button>
+          </td>
+          <br>
+          <td>
+            <button type="button" routerLink="/rentals/car/{{currentCar.carId}}" class="btn btn-secondary">Kirala</button>
+          </td>      
         </ul>
+        
+       
+        
       </div>
       <div
         id="carouselExampleControls"
@@ -64,18 +75,7 @@
     </div>
   </div>
 </div>
-<div class="footer d-flex flex-column mt-5">
-  <div class="row r4">
-    <div class="col-md-2 myt des"></div>
-    <div class="col-md-2 myt"></div>
-    <div class="col-md-2 mio offset-md-4"><a href="#">ADD TO CART</a></div>
-    <div class="col-md-2 myt">
-      <button type="button" class="btn btn-outline-success">
-        <a href="#">KİRALA</a>
-      </button>
-    </div>
-  </div>
-</div>
+
 
 <div class="row">
   <div class="col-md-8"></div>

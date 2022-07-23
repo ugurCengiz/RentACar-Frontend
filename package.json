@@ -18,7 +18,9 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "angular-util": "^0.0.4",
     "bootstrap": "^5.0.0-beta2",
+    "bytes": "^3.1.2",
     "jquery": "^3.6.0",
     "ngx-toastr": "^15.0.0",
     "rxjs": "~7.5.0",
@@ -27,7 +29,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.3",
-    "@angular/cli": "~14.0.3",
+    "@angular/cli": "^14.0.6",
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.1.0",

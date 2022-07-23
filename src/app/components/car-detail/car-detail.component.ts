@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { CarDto } from 'src/app/models/carDto';
 import { CarImage } from 'src/app/models/carImage';
 import { CarDtoService } from 'src/app/services/car-dto.service';
 import { CarImageService } from 'src/app/services/car-image.service';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { CarImageService } from 'src/app/services/car-image.service';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-
+  carDetail : CarDto
   currentCars: CarDto[] = [];
   brands: Brand[] = [];
   carImages: CarImage[] = [];
@@ -23,7 +25,10 @@ export class CarDetailComponent implements OnInit {
   constructor(
     private carImageService: CarImageService,
     private carDetailService: CarDtoService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private cartService:CartService,
+  
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -46,7 +51,17 @@ export class CarDetailComponent implements OnInit {
     this.carImageService.getImagesByCarId(carId).subscribe((response) => {
       this.carImages = response.data;
       this.dataLoaded = true;
-      console.log(this.carImageService.getImagesByCarId(carId));
+     
     });
   }
+
+
+  addToCart(car:CarDto){  
+    this.toastrService.success(
+    'Kiralama Sepetinize Eklendi',
+    car.brandName+" "+ car.carName );
+    this.cartService.addToCart(car);
+    
+  }
 }
+
