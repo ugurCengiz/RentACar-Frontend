@@ -1,6 +1,13 @@
 # RentACar
+This project was generated with Angular CLI version 14.0.6
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
+- Angular 14
+- Bootstrap 5.0
+- HttpClient Interceptor
+- Temel Guard
+- Özel Pipeler
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
 ## Development server
 
